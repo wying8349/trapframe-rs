@@ -1,0 +1,253 @@
+#### gdt.rs的分析
+#### TODO: 使用的一些macro和包，以后详细写
+```
+use alloc::boxed::Box;
+use alloc::vec::Vec;
+use core::mem::size_of;
+
+use x86_64::instructions::tables::{lgdt, load_tss};
+use x86_64::registers::model_specific::{GsBase, Star};
+use x86_64::structures::gdt::{Descriptor, SegmentSelector};
+use x86_64::structures::DescriptorTablePointer;
+use x86_64::{PrivilegeLevel, VirtAddr};
+```
+
+#### 定义TSS类型
+```
+/// 如果编译时没有参数"ioport_bitmap", 则将TSS设置为x86_64结构下的TaskStateSegment
+#[cfg(not(feature = "ioport_bitmap"))]
+type TSS = x86_64::structures::tss::TaskStateSegment;
+
+/// 如果编译时有参数"ioport_bitmap", 则将TSS设置为TSSWithPortBitmap
+#[cfg(feature = "ioport_bitmap")]
+type TSS = super::ioport::TSSWithPortBitmap;
+```
+
+#### 初始化TSS与GDT
+
+#### 获取当前GDTR内容
+
+
+#### 定义了一些全局描述符
+全局描述符表(GDT), It contains entries telling the CPU about memory segments. A similar Interrupts Descriptor Table exists containing tasks and interrupts descriptors.
+
+![GDT_Entry](/docs/riscv_doc/GDT_Entry.png)
+```
+const KCODE64: u64 = 0x00209800_00000000; // EXECUTABLE | USER_SEGMENT | PRESENT | LONG_MODE
+const UCODE64: u64 = 0x0020F800_00000000; // EXECUTABLE | USER_SEGMENT | USER_MODE | PRESENT | LONG_MODE
+const KDATA64: u64 = 0x00009200_00000000; // DATA_WRITABLE | USER_SEGMENT | PRESENT
+#[allow(dead_code)]
+const UDATA64: u64 = 0x0000F200_00000000; // DATA_WRITABLE | USER_SEGMENT | USER_MODE | PRESENT
+const UCODE32: u64 = 0x00cffa00_0000ffff; // EXECUTABLE | USER_SEGMENT | USER_MODE | PRESENT
+const UDATA32: u64 = 0x00cff200_0000ffff; // EXECUTABLE | USER_SEGMENT | USER_MODE | PRESENT
+```
+以上述代码中的KCODE64为例分析:
+<table border=0 cellpadding=0 cellspacing=0 width=576 style='border-collapse:
+ collapse;table-layout:fixed;width:432pt'>
+ <col width=64 span=9 style='width:48pt'>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl68 width=256 style='height:14.4pt;width:192pt'>Base
+  0:15</td>
+  <td colspan=4 class=xl69 width=256 style='border-left:none;width:192pt'>Limit
+  0:15</td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl66 style='height:14.4pt;border-top:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl70 style='height:14.4pt'>Base 24:31</td>
+  <td class=xl66 style='border-top:none;border-left:none'>Flags</td>
+  <td class=xl71 style='border-top:none;border-left:none'>Limit 16:19</td>
+  <td colspan=2 class=xl72 style='border-left:none'>Access Byte</td>
+  <td colspan=2 class=xl70 style='border-left:none'>Base 16:23</td>
+  <td></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl66 style='height:14.4pt;border-top:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl67 style='border-top:none;border-left:none'>0010</td>
+  <td class=xl67 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl67 style='border-top:none;border-left:none'>1001</td>
+  <td class=xl67 style='border-top:none;border-left:none'>1000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td class=xl66 style='border-top:none;border-left:none'>0000</td>
+  <td></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 colspan=9 style='height:14.4pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl75 style='height:14.4pt'>Base:</td>
+  <td class=xl74>0</td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl73 style='height:14.4pt;border-top:none'>&nbsp;</td>
+  <td class=xl100>&nbsp;</td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl101 style='height:14.4pt'>Limit:</td>
+  <td class=xl76>0</td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl102 style='height:14.4pt;border-top:none'>&nbsp;</td>
+  <td class=xl104>&nbsp;</td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+  <td class=xl65></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 rowspan=2 height=38 class=xl79 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:28.8pt'>Access Byte:</td>
+  <td class=xl82>Pr</td>
+  <td class=xl77 style='border-left:none'>Privl</td>
+  <td class=xl77 style='border-left:none'>S</td>
+  <td class=xl77 style='border-left:none'>EX</td>
+  <td class=xl77 style='border-left:none'>DC</td>
+  <td class=xl77 style='border-left:none'>RW</td>
+  <td class=xl77 style='border-left:none'>AC</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl82 style='height:14.4pt;border-top:none'>1</td>
+  <td class=xl78 style='border-top:none;border-left:none'>00</td>
+  <td class=xl77 style='border-top:none;border-left:none'>1</td>
+  <td class=xl77 style='border-top:none;border-left:none'>1</td>
+  <td class=xl77 style='border-top:none;border-left:none'>0</td>
+  <td class=xl77 style='border-top:none;border-left:none'>0</td>
+  <td class=xl77 style='border-top:none;border-left:none'>0</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl83 style='height:14.4pt'>&nbsp;</td>
+  <td class=xl84>&nbsp;</td>
+  <td colspan=7 class=xl89 style='border-bottom:.5pt solid black;border-left:
+  none'>Present bit, must be 1</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl85 style='height:14.4pt'>&nbsp;</td>
+  <td class=xl65></td>
+  <td class=xl90 style='border-top:none'>&nbsp;</td>
+  <td colspan=6 class=xl91 style='border-bottom:.5pt solid black'>Privilege, 2
+  bits,ring level. 00=highest(user applications)</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl85 style='height:14.4pt'>&nbsp;</td>
+  <td></td>
+  <td class=xl92>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td colspan=5 class=xl91 style='border-bottom:.5pt solid black'>Descripter
+  Type. Set 1 for code or data segments</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl85 style='height:14.4pt'>&nbsp;</td>
+  <td></td>
+  <td class=xl92>&nbsp;</td>
+  <td class=xl94></td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl91 style='border-bottom:.5pt solid black'>Executable
+  bit. 1 for executable</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl85 style='height:14.4pt'>&nbsp;</td>
+  <td></td>
+  <td class=xl92>&nbsp;</td>
+  <td class=xl94></td>
+  <td class=xl94></td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td colspan=3 class=xl91 style='border-bottom:.5pt solid black'>Direction
+  bit. 0 grows up.</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl85 style='height:14.4pt'>&nbsp;</td>
+  <td></td>
+  <td class=xl92>&nbsp;</td>
+  <td class=xl94></td>
+  <td class=xl94></td>
+  <td class=xl94></td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td colspan=2 class=xl91 style='border-bottom:.5pt solid black'>Readable/Writable</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl86 style='height:14.4pt'>&nbsp;</td>
+  <td></td>
+  <td class=xl95>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl97 style='border-top:none'>&nbsp;</td>
+  <td class=xl98 style='border-top:none'>Accessed bit.</td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl86 style='height:14.4pt'>&nbsp;</td>
+  <td class=xl107>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl96>&nbsp;</td>
+  <td class=xl94></td>
+  <td class=xl94></td>
+  <td class=xl105></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 rowspan=2 height=38 class=xl99 style='height:28.8pt'>Flags:</td>
+  <td class=xl88 style='border-top:none;border-left:none'>Gr</td>
+  <td class=xl88 style='border-top:none;border-left:none'>Sz</td>
+  <td class=xl88 style='border-top:none;border-left:none'>0</td>
+  <td class=xl88 style='border-top:none;border-left:none'>0</td>
+  <td colspan=3 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl99 style='height:14.4pt;border-top:none;border-left:
+  none'>0</td>
+  <td class=xl99 style='border-top:none;border-left:none'>0</td>
+  <td class=xl99 style='border-top:none;border-left:none'>1</td>
+  <td class=xl99 style='border-top:none;border-left:none'>0</td>
+  <td colspan=3 style='mso-ignore:colspan'></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <![endif]>
+</table>
