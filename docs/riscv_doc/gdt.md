@@ -24,6 +24,36 @@ type TSS = super::ioport::TSSWithPortBitmap;
 ```
 
 #### 初始化TSS与GDT
+```
+pub fn init() {
+}
+```
+在这个函数中，我们：
+为trap分配栈，将栈顶设置为tss，这样一来，从ring3切换到ring0，CPU可以正确地切换栈
+代码如下
+```
+/// 新建一个位于堆上的TSS结构，并创建一个位于栈中的指针tss指向它
+/// https://docs.rs/x86_64/0.1.1/x86_64/structures/tss/struct.TaskStateSegment.html
+
+let mut tss = Box::new(TSS::new());
+
+
+/// 在堆中新建一个0x1000大小的数组，用于模拟栈，使用`Box::leak().as_ptr()`获取这个数组的起始地址，再加0x1000的偏移，就获得了这个模拟栈的栈顶
+
+let trap_stack_top = Box::leak(Box::new([0u8; 0x1000])).as_ptr() as u64 + 0x1000;
+
+/// 将栈顶设置为tss的privilege_stack_table
+tss.privilege_stack_table[0] = VirtAddr::new(trap_stack_top);
+
+/// 解开Box, 获取tss的数据 ***？
+let tss: &'static _ = Box::leak(tss);
+
+let (tss0, tss1) = match Descriptor::tss_segment(tss) {
+        Descriptor::SystemSegment(tss0, tss1) => (tss0, tss1),
+        _ => unreachable!(),
+    };
+```
+
 
 #### 获取当前GDTR内容
 
