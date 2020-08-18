@@ -1,0 +1,337 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link id=Main-File rel=Main-File href="../htmltable2.htm">
+<link rel=File-List href=filelist.xml>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../htmltable2.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link=blue vlink=purple>
+
+<table border=0 cellpadding=0 cellspacing=0 width=1180 style='border-collapse:
+ collapse;table-layout:fixed;width:886pt'>
+ <col width=546 style='mso-width-source:userset;mso-width-alt:19427;width:410pt'>
+ <col width=634 style='mso-width-source:userset;mso-width-alt:22556;width:476pt'>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl65 width=546 style='height:36.0pt;width:410pt'>pub<font
+  class="font6"> divide_by_zero: Entry&lt;HandlerFunc&gt;,<span
+  style='mso-spacerun:yes'> </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'>A divide by zero exception
+  (`#DE`) occurs when the denominator of a DIV instruction or an IDIV
+  instruction is 0. A `#DE` also occurs if the result is too large to be
+  represented in the destination.</td>
+ </tr>
+ <tr height=128 style='height:96.0pt'>
+  <td height=128 class=xl65 style='height:96.0pt'>pub<font class="font6">
+  debug: Entry&lt;HandlerFunc&gt;,<span style='mso-spacerun:yes'> </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'><span
+  style='mso-spacerun:yes'>    </span>/// - Instruction execution.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Instruction single
+  stepping.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Data read.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Data write.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - I/O read.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - I/O write.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Task switch.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Debug-register access, or
+  general detect fault</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  non_maskable_interrupt: Entry&lt;HandlerFunc&gt;,<span
+  style='mso-spacerun:yes'> </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'>An non maskable interrupt
+  exception (NMI) occurs as a result of system logic signaling a non-maskable
+  interrupt to the processor.</td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td height=21 class=xl65 style='height:15.6pt'>pub<font class="font6">
+  breakpoint: Entry&lt;HandlerFunc&gt;,<span style='mso-spacerun:yes'>  </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'>A breakpoint (`#BP`) exception
+  occurs when an `INT3` instruction is executed.</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  overflow: Entry&lt;HandlerFunc&gt;,<span style='mso-spacerun:yes'>  </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'>An overflow exception (`#OF`)
+  occurs as a result of executing an `INTO` instruction while the overflow bit
+  in `RFLAGS` is set to 1.</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  bound_range_exceeded: Entry&lt;HandlerFunc&gt;,<span
+  style='mso-spacerun:yes'> </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'>A bound-range exception (`#BR`)
+  exception can occur as a result of executing the `BOUND` instruction.</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  invalid_opcode: Entry&lt;HandlerFunc&gt;,<span
+  style='mso-spacerun:yes'>  </span></font></td>
+  <td class=xl66 width=634 style='width:476pt'>An invalid opcode exception
+  (`#UD`) occurs when an attempt is made to execute an<span
+  style='mso-spacerun:yes'>  </span>invalid or undefined opcode.</td>
+ </tr>
+ <tr height=112 style='height:84.0pt'>
+  <td height=112 class=xl65 style='height:84.0pt'>pub<font class="font6">
+  device_not_available: Entry&lt;HandlerFunc,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>A device not available exception
+  (`#NM`) occurs under any of the following conditions:<br>
+    <span style='mso-spacerun:yes'>    </span>/// - An `FWAIT`/`WAIT`
+  instruction is executed when `CR0.MP=1` and `CR0.TS=1`.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Any x87 instruction other
+  than `FWAIT` is executed when `CR0.EM=1`.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Any x87 instruction is
+  executed when `CR0.TS=1`. The `CR0.MP` bit controls whether the<span
+  style='mso-spacerun:yes'>  </span>`FWAIT`/`WAIT` instruction causes an `#NM`
+  exception when `TS=1`.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Any 128-bit or 64-bit media
+  instruction when `CR0.TS=1`.</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  double_fault: Entry&lt;HandlerFuncWithErrCode&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>A double fault (`#DF`) exception
+  can occur when a second exception occurs during the handling of a prior
+  (first) exception or interrupt handler.</td>
+ </tr>
+ <tr class=xl69 height=32 style='height:24.0pt'>
+  <td height=32 class=xl67 style='height:24.0pt'>coprocessor_segment_overrun:
+  Entry&lt;HandlerFunc&gt;,</td>
+  <td class=xl68 width=634 style='width:476pt'>This interrupt vector is
+  reserved. It is for a discontinued exception originally used by processors
+  that supported external x87-instruction coprocessors.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl65 style='height:36.0pt'>pub<font class="font6">
+  invalid_tss: Entry&lt;HandlerFuncWithErrCode&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>An invalid TSS exception (`#TS`)
+  occurs only as a result of a control transfer through a gate descriptor that
+  results in an invalid stack-segment reference using an `SS` selector in the
+  TSS.</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  segment_not_present: Entry&lt;HandlerFuncWithErrCode&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>An segment-not-present exception
+  (`#NP`) occurs when an attempt is made to load a segment or gate with a clear
+  present bit.</td>
+ </tr>
+ <tr height=112 style='height:84.0pt'>
+  <td height=112 class=xl65 style='height:84.0pt'>pub<font class="font6">
+  stack_segment_fault: Entry&lt;HandlerFuncWithErrCode&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>An stack segment exception
+  (`#SS`) can occur in the following situations:<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Implied stack references in
+  which the stack address is not in canonical form. Implied stack references
+  include all push and pop instructions, and any instruction using `RSP` or
+  `RBP` as a base register.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Attempting to load a
+  stack-segment selector that references a segment descriptor containing a
+  clear present bit.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Any stack access that fails
+  the stack-limit check.</td>
+ </tr>
+ <tr height=144 style='height:108.0pt'>
+  <td height=144 class=xl65 style='height:108.0pt'>pub<font class="font6">
+  general_protection_fault: Entry&lt;HandlerFuncWithErrCo</font><span
+  style='display:none'><font class="font6">de&gt;,</font></span></td>
+  <td class=xl66 width=634 style='width:476pt'>A general protection fault
+  (`#GP`) can occur in various situations. Common causes include:<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Executing a privileged
+  instruction while `CPL &gt; 0`.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Writing a 1 into any
+  register field that is reserved, must be zero (MBZ).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Attempting to execute an
+  SSE instruction specifying an unaligned memory operand.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Loading a non-canonical
+  base address into the `GDTR` or `IDTR`.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Using WRMSR to write a
+  read-only MSR.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - Any long-mode
+  consistency-check violation.</td>
+ </tr>
+ <tr height=176 style='height:132.0pt'>
+  <td height=176 class=xl65 style='height:132.0pt'>pub<font class="font6">
+  page_fault: Entry&lt;PageFaultHandlerFunc&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>A page fault (`#PF`) can occur
+  during a memory access in any of the following situations:<br>
+    <span style='mso-spacerun:yes'>    </span>/// - A page-translation-table
+  entry or physical page involved in translating the memory access is not
+  present in physical memory. This is indicated by a cleared present bit in the
+  translation-table entry.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - An attempt is made by the
+  processor to load the instruction TLB with a translation for a non-executable
+  page.<br>
+    <span style='mso-spacerun:yes'>    </span>/// - The memory access fails the
+  paging-protection checks (user/supervisor, read/write, or both).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - A reserved bit in one of
+  the page-translation-table entries is set to 1. A `#PF` occurs for this
+  reason only when `CR4.PSE=1` or `CR4.PAE=1`.</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_1:
+  Entry&lt;HandlerFunc&gt;,</td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  x87_floating_point: Entry&lt;HandlerFunc&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>The x87 Floating-Point
+  Exception-Pending exception (`#MF`) is used to handle unmasked x87
+  floating-point exceptions.</td>
+ </tr>
+ <tr height=32 style='height:24.0pt'>
+  <td height=32 class=xl65 style='height:24.0pt'>pub<font class="font6">
+  alignment_check: Entry&lt;HandlerFuncWithErrCode&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>An alignment check exception
+  (`#AC`) occurs when an unaligned-memory data reference is performed while
+  alignment checking is enabled.</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl65 style='height:36.0pt'>pub<font class="font6">
+  machine_check: Entry&lt;HandlerFunc&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>The machine check exception
+  (`#MC`) is model specific. Processor implementations are not required to
+  support the `#MC` exception, and those implementations that do support `#MC`
+  can vary in how the `#MC` exception mechanism works.</td>
+ </tr>
+ <tr height=144 style='height:108.0pt'>
+  <td height=144 class=xl65 style='height:108.0pt'>pub<font class="font6">
+  simd_floating_point: Entry&lt;HandlerFunc&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>The SIMD Floating-Point
+  Exception (`#XF`) is used to handle unmasked SSE floating-point exceptions.
+  The SSE floating-point exceptions reported by the `#XF` exception are
+  (including mnemonics):<br>
+    <span style='mso-spacerun:yes'>    </span>/// - IE: Invalid-operation
+  exception (also called #I).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - DE: Denormalized-operand
+  exception (also called #D).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - ZE: Zero-divide exception
+  (also called #Z).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - OE: Overflow exception
+  (also called #O).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - UE: Underflow exception
+  (also called #U).<br>
+    <span style='mso-spacerun:yes'>    </span>/// - PE: Precision exception
+  (also called #P or inexact-result exception).</td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td height=21 class=xl65 style='height:15.6pt'>pub<font class="font6">
+  virtualization: Entry&lt;HandlerFunc&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>virtualization</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr class=xl69 height=21 style='height:15.6pt'>
+  <td height=21 class=xl67 style='height:15.6pt'>reserved_2:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">9</font><font class="font6">],</font></td>
+  <td class=xl68 width=634 style='width:476pt'>reserved</td>
+ </tr>
+ <tr height=48 style='height:36.0pt'>
+  <td height=48 class=xl65 style='height:36.0pt'>pub<font class="font6">
+  security_exception: Entry&lt;HandlerFuncWithErrCode&gt;,</font></td>
+  <td class=xl66 width=634 style='width:476pt'>The Security Exception (`#SX`)
+  signals security-sensitive events that occur while executing the VMM, in the
+  form of an exception so that the VMM may take appropriate action.</td>
+ </tr>
+ <tr class=xl71 height=21 style='height:15.6pt'>
+  <td height=21 class=xl70 style='height:15.6pt'>interrupts:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">256</font><font class="font6">
+  - </font><font class="font7">32</font><font class="font6">],</font></td>
+  <td rowspan=3 class=xl76 width=634 style='width:476pt'>interreupts</td>
+ </tr>
+ <tr class=xl71 height=21 style='height:15.6pt'>
+  <td height=21 class=xl70 style='height:15.6pt'>… …<span
+  style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr class=xl71 height=21 style='height:15.6pt'>
+  <td height=21 class=xl70 style='height:15.6pt'>interrupts:
+  [Entry&lt;HandlerFunc&gt;; <font class="font7">256</font><font class="font6">
+  - </font><font class="font7">32</font><font class="font6">],</font></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=546 style='width:410pt'></td>
+  <td width=634 style='width:476pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

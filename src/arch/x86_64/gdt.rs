@@ -20,6 +20,7 @@ pub fn init() {
     // allocate stack for trap from user
     // set the stack top to TSS
     // so that when trap from ring3 to ring0, CPU can switch stack correctly
+
     let mut tss = Box::new(TSS::new());
     let trap_stack_top = Box::leak(Box::new([0u8; 0x1000])).as_ptr() as u64 + 0x1000;
     tss.privilege_stack_table[0] = VirtAddr::new(trap_stack_top);

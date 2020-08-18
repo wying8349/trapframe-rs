@@ -1,0 +1,327 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link id=Main-File rel=Main-File href="../htmltable2.htm">
+<link rel=File-List href=filelist.xml>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(1);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../htmltable2.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link=blue vlink=purple class=xl72>
+
+<table border=0 cellpadding=0 cellspacing=0 width=1439 style='border-collapse:
+ collapse;table-layout:fixed;width:1082pt'>
+ <col class=xl72 width=65 style='width:49pt'>
+ <col class=xl72 width=82 style='mso-width-source:userset;mso-width-alt:2929;
+ width:62pt'>
+ <col class=xl72 width=65 style='width:49pt'>
+ <col class=xl72 width=84 style='mso-width-source:userset;mso-width-alt:2986;
+ width:63pt'>
+ <col class=xl72 width=65 style='width:49pt'>
+ <col class=xl72 width=84 style='mso-width-source:userset;mso-width-alt:2986;
+ width:63pt'>
+ <col class=xl72 width=65 style='width:49pt'>
+ <col class=xl72 width=78 style='mso-width-source:userset;mso-width-alt:2787;
+ width:59pt'>
+ <col class=xl72 width=721 style='mso-width-source:userset;mso-width-alt:25628;
+ width:541pt'>
+ <col class=xl72 width=65 span=2 style='width:49pt'>
+ <tr height=21 style='height:15.6pt'>
+  <td height=21 class=xl72 width=65 style='height:15.6pt;width:49pt'></td>
+  <td class=xl72 width=82 style='width:62pt'></td>
+  <td class=xl72 width=65 style='width:49pt'></td>
+  <td class=xl72 width=84 style='width:63pt'></td>
+  <td class=xl72 width=65 style='width:49pt'></td>
+  <td class=xl72 width=84 style='width:63pt'></td>
+  <td class=xl72 width=65 style='width:49pt'></td>
+  <td class=xl72 width=78 style='width:59pt'></td>
+  <td class=xl73 width=721 style='width:541pt'>pointer_low: u16,</td>
+  <td class=xl72 width=65 style='width:49pt'></td>
+  <td class=xl72 width=65 style='width:49pt'></td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td colspan=2 height=21 class=xl80 style='border-right:.5pt solid black;
+  height:15.6pt'>63-48</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>47-32</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-16</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>15-0</td>
+  <td class=xl73><span style='mso-spacerun:yes'>    </span>gdt_selector: u16,</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td colspan=2 height=21 class=xl77 style='height:15.6pt'>pointer_middle</td>
+  <td colspan=2 class=xl77 style='border-left:none'>options</td>
+  <td colspan=2 class=xl77 style='border-left:none'>gdt_selector</td>
+  <td colspan=2 class=xl77 style='border-left:none'>pointer_low</td>
+  <td class=xl73><span style='mso-spacerun:yes'>    </span>options:
+  EntryOptions,</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td colspan=4 height=21 class=xl80 style='border-right:.5pt solid black;
+  height:15.6pt'>63-32</td>
+  <td colspan=4 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-0</td>
+  <td class=xl73><span style='mso-spacerun:yes'>    </span>pointer_middle: u16,</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td colspan=4 height=21 class=xl77 style='height:15.6pt'>reserved</td>
+  <td colspan=4 class=xl77 style='border-left:none'>pointer_high</td>
+  <td class=xl73><span style='mso-spacerun:yes'>    </span>pointer_high: u32,</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=21 style='height:15.6pt'>
+  <td height=21 class=xl72 style='height:15.6pt'></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl73><span style='mso-spacerun:yes'>    </span>reserved: u32,</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl72 style='height:15.0pt'></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl74 colspan=3 style='mso-ignore:colspan'>phantom:
+  PhantomData&lt;F&gt;,<font class="font11">&#65306;</font><font class="font10">Zero-sized
+  type used to mark things that &quot;act like&quot; they own a T</font></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl72 style='height:14.4pt'>missing</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl80 style='border-right:.5pt solid black;
+  height:14.4pt'>63-48</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>47-32</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-16</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>15-0</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl77 style='height:14.4pt'>0</td>
+  <td colspan=2 class=xl77 style='border-left:none'>0000_1110_0000_0000</td>
+  <td colspan=2 class=xl77 style='border-left:none'>0</td>
+  <td colspan=2 class=xl77 style='border-left:none'>0</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl80 style='border-right:.5pt solid black;
+  height:14.4pt'>63-32</td>
+  <td colspan=4 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-0</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl77 style='height:14.4pt'>0</td>
+  <td colspan=4 class=xl77 style='border-left:none'>0</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl72 style='height:14.4pt'></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=8 height=19 class=xl81 style='height:14.4pt'>fn set_handler_addr(<font
+  class="font12">&amp;mut</font><font class="font10"> </font><font
+  class="font13">self</font><font class="font10">, addr: u64)</font></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl80 style='border-right:.5pt solid black;
+  height:14.4pt'>63-48</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>47-32</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-16</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>15-0</td>
+  <td class=xl75>&#20854;&#20182;</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl77 style='height:14.4pt'>addr16-31&#20301;</td>
+  <td colspan=2 class=xl77 style='border-left:none'>1000_0000_0000_0000</td>
+  <td colspan=2 class=xl77 style='border-left:none'>segmentation::cs().0</td>
+  <td colspan=2 class=xl77 style='border-left:none'>addr&#20302;16&#20301;</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl80 style='border-right:.5pt solid black;
+  height:14.4pt'>63-32</td>
+  <td colspan=4 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-0</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl77 style='height:14.4pt'>0</td>
+  <td colspan=4 class=xl77 style='border-left:none'>addr&#39640;32&#20301;</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td height=19 class=xl72 style='height:14.4pt'></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=8 height=19 class=xl81 style='height:14.4pt'>opt.set_privilege_level(PrivilegeLevel::Ring3);</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl80 style='border-right:.5pt solid black;
+  height:14.4pt'>63-48</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>47-32</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-16</td>
+  <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>15-0</td>
+  <td class=xl75>int 3&#65292;int 4</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=2 height=19 class=xl77 style='height:14.4pt'>addr16-31&#20301;</td>
+  <td colspan=2 class=xl77 style='border-left:none'>1110_0000_0000_0000</td>
+  <td colspan=2 class=xl77 style='border-left:none'>segmentation::cs().0</td>
+  <td colspan=2 class=xl77 style='border-left:none'>addr&#20302;16&#20301;</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl80 style='border-right:.5pt solid black;
+  height:14.4pt'>63-32</td>
+  <td colspan=4 class=xl80 style='border-right:.5pt solid black;border-left:
+  none'>31-0</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <tr height=19 style='height:14.4pt'>
+  <td colspan=4 height=19 class=xl77 style='height:14.4pt'>0</td>
+  <td colspan=4 class=xl77 style='border-left:none'>addr&#39640;32&#20301;</td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+  <td class=xl72></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=65 style='width:49pt'></td>
+  <td width=82 style='width:62pt'></td>
+  <td width=65 style='width:49pt'></td>
+  <td width=84 style='width:63pt'></td>
+  <td width=65 style='width:49pt'></td>
+  <td width=84 style='width:63pt'></td>
+  <td width=65 style='width:49pt'></td>
+  <td width=78 style='width:59pt'></td>
+  <td width=721 style='width:541pt'></td>
+  <td width=65 style='width:49pt'></td>
+  <td width=65 style='width:49pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

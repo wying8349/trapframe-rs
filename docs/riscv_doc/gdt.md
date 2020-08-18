@@ -48,14 +48,73 @@ tss.privilege_stack_table[0] = VirtAddr::new(trap_stack_top);
 /// 解开Box, 获取tss的数据 ***？
 let tss: &'static _ = Box::leak(tss);
 
+/// Creates a TSS system descriptor for the given TSS. 如果不能返回System Segment, 那么panic
+/// tss0与tss1:
+/// tss0: 按descriptor格式重写的栈顶地址
+/// 如何理解tss1？
 let (tss0, tss1) = match Descriptor::tss_segment(tss) {
         Descriptor::SystemSegment(tss0, tss1) => (tss0, tss1),
         _ => unreachable!(),
     };
+
+// Extreme hack: the segment limit assumed by x86_64 does not include the port bitmap.
+    #[cfg(feature = "ioport_bitmap")]
+    let tss0 = (tss0 & !0xFFFF) | (size_of::<TSS>() as u64);
+
+    unsafe {
+        // get current GDT
+        let gdtp = sgdt();
+        let entry_count = (gdtp.limit + 1) as usize / size_of::<u64>();
+
+    /// old_gdt: 一个slice, 从现有的gdt的base地址开始, 取entry_count个值
+        let old_gdt = core::slice::from_raw_parts(gdtp.base as *const u64, entry_count);
+
+        // allocate new GDT with 7 more entries
+        //
+        // NOTICE: for fast syscall:
+        //   STAR[47:32] = K_CS   = K_SS - 8
+        //   STAR[63:48] = U_CS32 = U_SS32 - 8 = U_CS - 16
+        let mut gdt = Vec::from(old_gdt);
+        gdt.extend([tss0, tss1, KCODE64, KDATA64, UCODE32, UDATA32, UCODE64].iter());
+        let gdt = Vec::leak(gdt);
+
+
+        // load new GDT and TSS
+        lgdt(&DescriptorTablePointer {
+            limit: gdt.len() as u16 * 8 - 1,
+            base: gdt.as_ptr() as _,
+        });
+
+    /// SegmentSelector: a index to LDT or GDT table with some additional flags
+    /// Load the task state register using the ltr instruction
+        load_tss(SegmentSelector::new(
+            entry_count as u16,
+            PrivilegeLevel::Ring0,
+        ));
+
+        // for fast syscall:
+        // store address of TSS to kernel_gsbase
+        GsBase::MSR.write(tss as *const _ as u64);
+
+        Star::write_raw(
+            SegmentSelector::new(entry_count as u16 + 4, PrivilegeLevel::Ring3).0,
+            SegmentSelector::new(entry_count as u16 + 2, PrivilegeLevel::Ring0).0,
+        );
+    }
+
 ```
 
 
 #### 获取当前GDTR内容
+```
+/// Get current GDT register
+#[inline]
+unsafe fn sgdt() -> DescriptorTablePointer {
+    let mut gdt = DescriptorTablePointer { limit: 0, base: 0 };
+    asm!("sgdt [{}]", in(reg) &mut gdt);
+    gdt
+}
+```
 
 
 #### 定义了一些全局描述符
